@@ -1,0 +1,55 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        String[] brands = {"NIKE", "ADIDAS", "REEBOK"};
+        String[] quarters = {"Q1", "Q2", "Q3", "Q4"};
+
+        int[][] sales = {{100, 150, 70}, {88, 92, 103}, {75, 45, 90}, {65, 95, 175}};
+
+        System.out.println("ULTIMATE SHOE SALES");
+        System.out.println("--------------------------------------------------");
+        System.out.printf("%-16s%-16s%-16s%-16s%n", "QUARTER", brands[0], brands[1], brands[2]);
+        System.out.println("--------------------------------------------------");
+
+        for (int q = 0; q < sales.length; q++) {
+            System.out.printf("%-16s%-16d%-16d%-16d%n", quarters[q], sales[q][0], sales[q][1], sales[q][2]);
+        }
+        System.out.println("--------------------------------------------------");
+
+        int[] totals = new int[brands.length];
+        double[] averages = new double[brands.length];
+        int[] mins = new int[brands.length];
+        int[] maxs = new int[brands.length];
+
+
+        for (int b = 0; b < brands.length; b++) {
+            int total = 0;
+            int min = sales[0][b];
+            int max = sales[0][b];
+
+            for (int q = 0; q < quarters.length; q++) {
+                int currentSale = sales[q][b];
+                total += currentSale;
+
+                if (currentSale < min) {
+                    min = currentSale;
+                }
+                if (currentSale > max) {
+                    max = currentSale;
+                }
+            }
+
+            totals[b] = total;
+            averages[b] = (double) total / quarters.length;
+            mins[b] = min;
+            maxs[b] = max;
+        }
+
+        System.out.printf("%-16s%-16d%-16d%-16d%n", "TOTAL:", totals[0], totals[1], totals[2]);
+        System.out.printf("%-16s%-16.1f%-16.1f%-16.1f%n", "AVERAGE:", averages[0], averages[1], averages[2]);
+        System.out.printf("%-16s%-16d%-16d%-16d%n", "MIN:", mins[0], mins[1], mins[2]);
+        System.out.printf("%-16s%-16d%-16d%-16d%n", "MAX:", maxs[0], maxs[1], maxs[2]);
+        System.out.println("--------------------------------------------------");
+    }
+}
